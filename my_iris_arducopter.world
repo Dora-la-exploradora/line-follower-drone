@@ -1,0 +1,149 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="default">
+    <scene>
+      <shadows>0</shadows>
+    </scene>
+    <gui>
+      <camera name="user_camera">
+        <pose>-5 0 1 0 0.2 0</pose>
+      </camera>
+    </gui>
+    <physics type="ode">
+      <ode>
+        <solver>
+          <type>quick</type>
+          <iters>100</iters>
+          <sor>1.0</sor>
+        </solver>
+        <constraints>
+          <cfm>0.0</cfm>
+          <erp>0.2</erp>
+          <contact_max_correcting_vel>0.1</contact_max_correcting_vel>
+          <contact_surface_layer>0.0</contact_surface_layer>
+        </constraints>
+      </ode>
+      <real_time_update_rate>-1</real_time_update_rate>
+      <!--<max_step_size>0.0020</max_step_size>-->
+    </physics>
+    <gravity>0 0 -9.8</gravity>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>5000 5000</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+<!--
+        <visual name="runway">
+          <pose>000 0 0.005 0 0 0</pose>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>450 12.25</size>
+            </plane>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Runway</name>
+            </script>
+          </material>
+        </visual>
+-->
+
+        <visual name="grass">
+          <pose>0 0 -0.1 0 0 0</pose>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>5000 5000</size>
+            </plane>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grass</name>
+            </script>
+          </material>
+        </visual>
+
+      </link>
+    </model>
+
+    <road name="my_road">
+      <width>7.34</width>
+      <point>0 0 0</point>
+      <point>24 0 0</point>
+      <!-- Поворот налево №1 -->
+      <point>28 2 0</point>
+      <point>30 4 0</point>
+      <point>32 8 0</point>
+      <point>32 32 0</point>
+
+      <!-- Поворот направо №1 -->
+      <point>34 36 0</point>
+      <point>36 38 0</point>
+      <point>40 40 0</point>
+      <point>50 40 0</point>
+      <!-- Поворот направо №2 -->
+      <point>54 38 0</point>
+      <point>56 36 0</point>
+      <point>58 32 0</point>
+      <point>58 -42 0</point>
+
+      <!-- Направо №3 -->
+      <point>56 -46 0</point>
+      <point>54 -48 0</point>
+      <point>50 -50 0</point>
+      <point>40 -50 0</point>
+      <!-- Направо №4 -->
+      <point>36 -48 0</point>
+      <point>34 -46 0</point>
+      <point>32 -42 0</point>
+      <point>32 -30 0</point>
+
+      <!-- Налево №2 -->
+      <point>30 -26 0</point>
+      <point>28 -24 0</point>
+      <point>24 -22 0</point>
+      <point>-10 -22 0</point>
+
+      <!-- Конечный поворот направо №5 -->
+      <point>-14 -20 0</point>
+      <point>-16 -18 0</point>
+      <point>-18 -14 0</point>
+      <point>-18 -8 0</point>
+      <!-- Конечный поворот направо №6 -->
+      <point>-16 -4 0</point>
+      <point>-14 -2 0</point>
+      <point>-10 0 0</point>
+      <point>2 0 0</point>
+    </road>
+
+    <model name="iris_demo_test">
+      <include>
+        <uri>model://iris_with_ardupilot</uri>
+      </include>
+    </model>
+
+  </world>
+</sdf>
